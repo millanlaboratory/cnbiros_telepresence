@@ -17,8 +17,8 @@ int main(int argc, char** argv) {
 	repellors.Add("/robotino/kinect", SimpleFusion::AsLaserScan); 
 
 	// Attractors list
-	attractors.Add("/bci/bci_discrete",  SimpleFusion::AsPoint); 
-	attractors.Add("/bci/bci_continous", SimpleFusion::AsPoint); 
+	attractors.Add("/telepresence/bcicontrol/bci_discrete",  SimpleFusion::AsPoint); 
+	attractors.Add("/telepresence/bcicontrol/bci_continuous", SimpleFusion::AsPoint); 
 
 
 	

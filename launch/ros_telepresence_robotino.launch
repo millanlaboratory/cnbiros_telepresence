@@ -15,7 +15,11 @@
 	</group>
 
 	<group ns="telepresence">
+		<remap from="/telepresence/bcicontrol/tic/cnbi2ros/" to="/bci/tic/cnbi2ros" />
+		<remap from="/telepresence/bcicontrol/tid/cnbi2ros/" to="/bci/tid/cnbi2ros" />
+
 		<node name="fusion" pkg="cnbiros_telepresence" type="ros_fusion_robotino" output="screen" />
+		<node name="bcicontrol" pkg="cnbiros_telepresence" type="ros_bcicontrol_robotino" output="screen" />
 	</group>
 </launch>
 
