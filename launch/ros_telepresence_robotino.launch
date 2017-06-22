@@ -1,0 +1,21 @@
+<launch>
+
+	<include file="$(find cnbiros_robotino)/launch/ros_robotino.launch" >
+		<arg name="address" value="192.168.1.3" />
+	</include>
+
+	<group ns="bci">
+		<include file="$(find cnbiros_bci)/launch/rostid.launch" >
+			<arg name="tid_pipes" value="[/bus, /dev]" />
+		</include>
+		
+		<include file="$(find cnbiros_bci)/launch/rostic.launch" >
+			<arg name="tic_pipes2ros" value="[/ctrl1]" />
+		</include>
+	</group>
+
+	<group ns="telepresence">
+		<node name="fusion" pkg="cnbiros_telepresence" type="ros_fusion_robotino" output="screen" />
+	</group>
+</launch>
+
