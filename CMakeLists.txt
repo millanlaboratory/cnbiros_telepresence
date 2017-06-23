@@ -35,3 +35,6 @@ target_link_libraries(ros_fusion_robotino cnbiros_telepresence)
 
 add_executable(ros_bcicontrol_robotino src/ros_bcicontrol_robotino.cpp)
 target_link_libraries(ros_bcicontrol_robotino cnbiros_telepresence)
+
+add_executable(ros_forcefield_robotino src/ros_forcefield_robotino.cpp)
+target_link_libraries(ros_forcefield_robotino cnbiros_telepresence)

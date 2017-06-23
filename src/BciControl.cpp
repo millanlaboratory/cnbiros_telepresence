@@ -18,6 +18,8 @@ BciControl::BciControl(ros::NodeHandle* node) : cnbiros::core::NodeInterface(nod
 	this->rospubs_->Add<geometry_msgs::Point32>(node->getNamespace()+"/bci_discrete");
 	this->rospubs_->Add<geometry_msgs::Point32>(node->getNamespace()+"/bci_continuous");
 
+	this->rossrv_reset_ = node->serviceClient<cnbiros_navigation::ResetGridService>("/telepresence/fusion/attractors/reset"); 
+
 }
 
 BciControl::~BciControl(void) {
@@ -101,6 +103,9 @@ void BciControl::on_received_tic(const cnbiros_bci::TicMessage::ConstPtr& msg) {
 
 
 void BciControl::onRunning(void) {
+
+	cnbiros_navigation::ResetGridService srv;
+	srv.request.layer = this->GetNode()->getNamespace()+"/bci_discrete";
 	
 	ros::Duration elapsed;
 	ros::Time 	  current = ros::Time::now();
@@ -110,12 +115,15 @@ void BciControl::onRunning(void) {
 
 	if(this->cmd_discrete_.isvalid == true) {
 		if(elapsed.toSec() > CNBIROS_BCICONTROL_COMMAND_TIMEOUT) {
-			this->cmd_discrete_.point.x = 0.0f;
-			this->cmd_discrete_.point.y = 0.0f;
+			ROS_INFO("elapsed");
 			this->cmd_discrete_.isvalid = false;
+			ROS_INFO("Requested to reset layer: %s", srv.request.layer.c_str());
+			if(this->rossrv_reset_.call(srv))
+				ROS_INFO("Reset done");
+
+		} else {
+			this->rospubs_->Publish(this->GetNode()->getNamespace()+"/bci_discrete", this->cmd_discrete_.point);
 		}
-		
-		this->rospubs_->Publish(this->GetNode()->getNamespace()+"/bci_discrete", this->cmd_discrete_.point);
 			
 	}
 		

@@ -11,6 +11,7 @@
 #include "cnbiros_bci/TicTools.hpp"
 #include "cnbiros_bci/TidTools.hpp"
 
+#include "cnbiros_navigation/ResetGridService.h"
 #include "cnbiros_telepresence/Flags.hpp"
 
 namespace cnbiros {
@@ -38,7 +39,8 @@ class BciControl : public cnbiros::core::NodeInterface {
 	private:
 		cnbiros::core::Subscribers*	rossubs_;
 		cnbiros::core::Publishers* 	rospubs_;
-		
+		ros::ServiceClient 			rossrv_reset_;
+
 		std::string 	icname_;
 		std::string 	iclabel_;
 
