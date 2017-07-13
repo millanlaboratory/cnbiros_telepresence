@@ -1,0 +1,32 @@
+<launch>
+
+	<!-- Robotino launcher -->
+	<include file="$(find cnbiros_robotino)/launch/ros_robotino.launch" >
+		<arg name="address" value="192.168.1.3" />
+	</include>
+	
+	<!-- Robotino Kinect launcher -->
+	<include file="$(find cnbiros_robotino)/launch/ros_robotino_kinect.launch" >
+	</include>
+
+	<!-- CNBI Loop interfaces -->
+	<include file="$(find cnbiros_bci)/launch/rostid.launch" >
+		<arg name="tid_pipes" value="[/bus, /dev]" />
+	</include>
+	
+	<include file="$(find cnbiros_bci)/launch/rostic.launch" >
+		<arg name="tic_pipes2ros" value="[/ctrl1]" />
+	</include>
+
+	<!-- BCI bridge node -->
+	<node name="bci_bridge" pkg="cnbiros_telepresence" type="ros_robotino_bcibridge" output="screen" />
+
+	<!-- Fusion nodes launchers -->
+	<node name="attractors" pkg="cnbiros_telepresence" type="ros_robotino_attractors" output="screen" />
+	<node name="repellors" pkg="cnbiros_telepresence" type="ros_robotino_repellors" output="screen" />
+
+	<!-- Forcefield navigation -->
+	<!-- <node name="forcefield" pkg="cnbiros_telepresence" type="ros_forcefield_robotino" output="screen" /> -->
+
+</launch>
+

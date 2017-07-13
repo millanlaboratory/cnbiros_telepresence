@@ -1,0 +1,4 @@
+<launch>
+	<!-- Rviz visualization -->
+	<node name="rqt_graph" pkg="rqt_graph" type="rqt_graph" />
+</launch>

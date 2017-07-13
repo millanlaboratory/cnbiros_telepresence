@@ -1,0 +1,4 @@
+<launch>
+	<!-- Rviz visualization -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find cnbiros_telepresence)/rviz/config_robotino_telepresence.rviz" />
+</launch>
