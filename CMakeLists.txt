@@ -52,6 +52,8 @@ target_link_libraries(ros_robotino_attractors cnbiros_telepresence)
 add_executable(ros_robotino_repellors src/ros_robotino_repellors.cpp)
 target_link_libraries(ros_robotino_repellors cnbiros_telepresence)
 
+add_executable(ros_robotino_navigation src/ros_robotino_navigation.cpp)
+target_link_libraries(ros_robotino_navigation cnbiros_telepresence)
 #
 #
 #add_executable(ros_forcefield_robotino src/ros_forcefield_robotino.cpp)
