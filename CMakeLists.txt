@@ -39,7 +39,7 @@ catkin_package(
 
 
 add_library(cnbiros_telepresence
-			src/BciBridge.cpp)
+			src/BciBridge.cpp src/StateControl.cpp)
 target_link_libraries(cnbiros_telepresence
 					  ${catkin_LIBRARIES})
 
@@ -54,6 +54,9 @@ target_link_libraries(ros_robotino_repellors cnbiros_telepresence)
 
 add_executable(ros_robotino_navigation src/ros_robotino_navigation.cpp)
 target_link_libraries(ros_robotino_navigation cnbiros_telepresence)
+
+add_executable(ros_robotino_statecontrol src/ros_robotino_statecontrol.cpp)
+target_link_libraries(ros_robotino_statecontrol cnbiros_telepresence)
 #
 #
 #add_executable(ros_forcefield_robotino src/ros_forcefield_robotino.cpp)
