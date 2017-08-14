@@ -29,13 +29,10 @@
 	<node name="state_control" pkg="cnbiros_telepresence" type="ros_robotino_statecontrol" output="screen" required="true" />
 
 	<!-- Rosbag -->
-	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args=" record /cmd_vel /odom /rostic_cnbi2ros /rostid_cnbi2ros" />
-
-
-
+	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args=" -o $(env HOME)/Desktop/ record /odom" />
 
 	<!-- Forcefield navigation -->
-	<!-- <node name="forcefield" pkg="cnbiros_telepresence" type="ros_forcefield_robotino" output="screen" /> -->
+	<node name="forcefield" pkg="cnbiros_telepresence" type="ros_forcefield_robotino" output="screen" />
 
 </launch>
 
