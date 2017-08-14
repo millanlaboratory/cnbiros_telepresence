@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 	cnbiros::telepresence::StateControl manager(&node);
 	manager.SetRate(20);
 
-	manager.Start();
+	manager.Run();
 
 	return 0;
 }

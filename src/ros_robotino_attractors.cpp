@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 	attractors.AddSource("/bci_discrete",   SimpleFusion::AsPoint); 
 	attractors.AddSource("/bci_continuous", SimpleFusion::AsPoint); 
 
-	attractors.Start();
+	attractors.Run();
 	
 	return 0;
 

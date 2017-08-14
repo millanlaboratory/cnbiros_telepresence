@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 	ForceField forcefield(&node);
 	forcefield.SetRate(40);
 
-	forcefield.Start();
+	forcefield.Run();
 
 
 

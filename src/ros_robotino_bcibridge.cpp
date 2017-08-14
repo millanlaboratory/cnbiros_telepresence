@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
 
 	bci.ConfigTicMessage("cl_ticsender", "0x0580");
 
-	bci.Start();
+	bci.Run();
 
 
 

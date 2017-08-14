@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 	repellors.AddSource("/infrared", SimpleFusion::AsPointCloud); 
 	repellors.AddSource("/camera/scan", SimpleFusion::AsLaserScan); 
 
-	repellors.Start();
+	repellors.Run();
 
 
 	return 0;
