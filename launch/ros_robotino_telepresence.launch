@@ -29,7 +29,11 @@
 	<node name="state_control" pkg="cnbiros_telepresence" type="ros_robotino_statecontrol" output="screen" required="true" />
 
 	<!-- Rosbag -->
+<<<<<<< HEAD
 	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args="-o /$HOME/Desktop/ record /cmd_vel /odom /rostic_cnbi2ros /rostid_cnbi2ros" />
+=======
+	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args="-o /home/robotino/Desktop/ record /cmd_vel /odom /rostic_cnbi2ros /rostid_cnbi2ros" />
+>>>>>>> ffc1626b39c2f2eef62cdc765309963df410b0fb
 
 
 	<!-- Forcefield navigation -->
