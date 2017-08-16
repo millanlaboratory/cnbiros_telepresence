@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 	cnbiros::telepresence::BciBridge bci(&node);
 	bci.SetRate(20);
 
-	bci.ConfigTicMessage("cl_ticsender", "0x0580");
+	bci.ConfigTicMessage("mi", "1408");
 
 	bci.Run();
 

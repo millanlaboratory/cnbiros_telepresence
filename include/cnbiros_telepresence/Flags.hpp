@@ -1,7 +1,7 @@
 #ifndef CNBIROS_TELEPRESENCE_FLAGS_HPP
 #define CNBIROS_TELEPRESENCE_FLAGS_HPP
 
-#define CNBIROS_BCIBRIDGE_INPUT_MIN 	-1.0f 		// Min value in TiC message from cnbiloop
+#define CNBIROS_BCIBRIDGE_INPUT_MIN 	 0.0f 		// Min value in TiC message from cnbiloop
 #define CNBIROS_BCIBRIDGE_INPUT_MAX		 1.0f		// Max value in TiC message from cnbiloop
 #define CNBIROS_BCIBRIDGE_ANGLE_MIN		-M_PI/4.0f	// Min angle in ROS environment
 #define CNBIROS_BCIBRIDGE_ANGLE_MAX		 M_PI/4.0f	// Max angle in ROS environment
