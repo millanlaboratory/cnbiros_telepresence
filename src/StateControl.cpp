@@ -67,6 +67,21 @@ void StateControl::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg)
 			srv.request.state = this->DoPause;
 			call_state_service(srv);
 			break;
+		case 25354:
+			ROS_INFO("Command: straight");
+			srv.request.state = this->DoStraight;
+			call_state_service(srv);
+			break;
+		case 25355:
+			ROS_INFO("Command: left");
+			srv.request.state = this->DoLeft;
+			call_state_service(srv);
+			break;
+		case 25356:
+			ROS_INFO("Command: right");
+			srv.request.state = this->DoRight;
+			call_state_service(srv);
+			break;
 	}
 }
 
