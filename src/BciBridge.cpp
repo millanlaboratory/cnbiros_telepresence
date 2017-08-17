@@ -112,7 +112,7 @@ void BciBridge::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg) {
 
 	if(iscommand == true) {
 		this->cmd_discrete_.point.x = this->distance_*cos(angle);
-		//set - to correct for wrong direction
+		//need sin(-...) since increasing value corresponds to clockwise rotation as opposed to mathematical angle
 		this->cmd_discrete_.point.y = this->distance_*sin(-angle);
 		this->cmd_discrete_.point.z = 0.0f;
 		this->cmd_discrete_.isvalid = true;
@@ -130,14 +130,14 @@ void BciBridge::on_received_tic(const cnbiros_bci::TicMessage::ConstPtr& msg) {
 	geometry_msgs::Point32 point;
 	cnbiros_bci::TicMessage data = *msg;
 
-	//set - to correct for wrong direction
-	value = -tool.GetValue(data, this->icname_, this->iclabel_);
+	value = tool.GetValue(data, this->icname_, this->iclabel_);
 
 	nvalue = (value - this->value_min_)/(this->value_max_ - this->value_min_);
 	svalue = nvalue*(this->angle_max_ - this->angle_min_) + this->angle_min_;
 
 	point.x = this->distance_*cos(svalue);
-	point.y = this->distance_*sin(svalue);
+	//need sin(-...) since increasing value corresponds to clockwise rotation as opposed to mathematical angle
+	point.y = this->distance_*sin(-svalue);
 	point.z = 0.0f;
 
 	this->rospub_continuous_.publish(point);
