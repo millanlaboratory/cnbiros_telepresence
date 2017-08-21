@@ -17,6 +17,7 @@ add_service_files(
   SetInputRangeSrv.srv
   SetAngleRangeSrv.srv
   SetDistanceSrv.srv
+  SetSyncPeriodSrv.srv
 )
 
 generate_messages(

@@ -32,8 +32,18 @@ BciBridge::BciBridge(ros::NodeHandle* node) : cnbiros::core::NodeInterface(node,
 												 &BciBridge::on_set_angle_range, this);
 	rossrv_distance_    = node->advertiseService(ros::this_node::getName() + "/set_distance", 
 												 &BciBridge::on_set_distance, this);
+	
+	rossrv_sync_period_ = node->advertiseService(ros::this_node::getName() + "/set_sync_period", 
+												 &BciBridge::on_set_sync_period, this);
 
 	rossrv_reset_client_ = node->serviceClient<cnbiros_fusion::ResetGridSrv>("/fusion/reset_grid");
+	
+	rossrv_sync_tic_ = node->serviceClient<cnbiros_bci::SyncTic>("/rostic/sync_tic");
+
+
+	// Initialize sync TiC timer
+	this->sync_period_ = CNBIROS_BCIBRIDGE_SYNC_TIC_PERIOD;
+	this->sync_tic_timer_ = node->createTimer(ros::Duration(this->sync_period_), &BciBridge::on_call_sync, this);
 }
 
 BciBridge::~BciBridge(void) {
@@ -52,6 +62,10 @@ void BciBridge::SetAngleRange(float angle_min, float angle_max) {
 
 void BciBridge::SetDistance(float distance) {
 	this->distance_ = distance;
+}
+
+void BciBridge::SetSyncPeriod(float period) {
+	this->sync_period_ = period;
 }
 
 bool BciBridge::on_set_input_range(cnbiros_telepresence::SetInputRangeSrv::Request& req,
@@ -74,6 +88,13 @@ bool BciBridge::on_set_distance(cnbiros_telepresence::SetDistanceSrv::Request& r
 	this->SetDistance(req.distance);
 	return true;
 }
+
+bool BciBridge::on_set_sync_period(cnbiros_telepresence::SetSyncPeriodSrv::Request& req,
+						cnbiros_telepresence::SetSyncPeriodSrv::Response& res) {
+	this->SetSyncPeriod(req.period);
+	return true;
+}
+
 
 void BciBridge::ConfigTicMessage(const std::string& name, const std::string& label) {
 	this->icname_  = name;
@@ -144,6 +165,12 @@ void BciBridge::on_received_tic(const cnbiros_bci::TicMessage::ConstPtr& msg) {
 
 }
 
+void BciBridge::on_call_sync(const ros::TimerEvent& event) {
+
+	cnbiros_bci::SyncTic srv;
+	if(this->rossrv_sync_tic_.call(srv))
+		ROS_INFO("Requested to sync tic");
+}
 
 void BciBridge::onRunning(void) {
 
@@ -171,6 +198,8 @@ void BciBridge::onRunning(void) {
 			
 		this->rospub_discrete_.publish(this->cmd_discrete_.point);
 	}
+
+
 		
 }
 

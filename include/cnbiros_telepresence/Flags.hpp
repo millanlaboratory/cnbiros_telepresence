@@ -8,6 +8,8 @@
 #define CNBIROS_BCIBRIDGE_DISTANCE 		 0.5f		// Distance from the center [m]
 #define CNBIROS_BCIBRIDGE_TIMEOUT		 1.0f		// Timeout for discrete command [s]
 
+#define CNBIROS_BCIBRIDGE_SYNC_TIC_PERIOD 		10 // Consume all tic message every 10 seconds
+
 #define CNBIROS_BCIBRIDGE_TOPIC_TIC_CNBI2ROS	"/rostic_cnbi2ros"
 #define CNBIROS_BCIBRIDGE_TOPIC_TID_CNBI2ROS 	"/rostid_cnbi2ros"
 #define CNBIROS_BCIBRIDGE_TOPIC_DISCRETE		"/bci_discrete"
