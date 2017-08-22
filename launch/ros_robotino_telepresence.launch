@@ -29,7 +29,7 @@
 	<node name="state_control" pkg="cnbiros_telepresence" type="ros_robotino_statecontrol" output="screen" required="true" />
 
 	<!-- Rosbag -->
-	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args=" -o $(env HOME)/Desktop/ record /odom" /cmd_vel /rostic_cnbi2ros /rostid_cnbi2ros />
+	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args=" -o $(env HOME)/Desktop/ record /odom /cmd_vel /rostic_cnbi2ros /rostid_cnbi2ros" />
 
 	<!-- Forcefield navigation -->
 	<node name="navigation" pkg="cnbiros_telepresence" type="ros_robotino_navigation" output="screen" />
