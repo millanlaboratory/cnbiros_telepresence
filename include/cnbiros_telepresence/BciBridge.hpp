@@ -10,7 +10,6 @@
 #include "cnbiros_bci/TicMessage.h"
 #include "cnbiros_bci/TicTools.hpp"
 #include "cnbiros_bci/TidTools.hpp"
-#include "cnbiros_bci/SyncTic.h"
 
 #include "cnbiros_fusion/ResetGridSrv.h"
 
@@ -38,7 +37,6 @@ class BciBridge : public cnbiros::core::NodeInterface {
 		void SetInputRange(float value_min, float value_max);
 		void SetAngleRange(float angle_min, float angle_max);
 		void SetDistance(float distance);
-		void SetSyncPeriod(float period);
 
 		void ConfigTicMessage(const std::string& name, const std::string& label);
 
@@ -53,10 +51,6 @@ class BciBridge : public cnbiros::core::NodeInterface {
 										cnbiros_telepresence::SetAngleRangeSrv::Response& res);
 		virtual bool on_set_distance(cnbiros_telepresence::SetDistanceSrv::Request& req,
 									 cnbiros_telepresence::SetDistanceSrv::Response& res);
-		virtual bool on_set_sync_period(cnbiros_telepresence::SetSyncPeriodSrv::Request& req,
-									    cnbiros_telepresence::SetSyncPeriodSrv::Response& res);
-
-		virtual void on_call_sync(const ros::TimerEvent& event);
 
 	private:
 		cnbiros::core::Subscribers*	rossubs_;
@@ -67,8 +61,6 @@ class BciBridge : public cnbiros::core::NodeInterface {
 		ros::ServiceServer			rossrv_distance_;
 		ros::ServiceServer			rossrv_sync_period_;
 		ros::ServiceClient 			rossrv_reset_client_;
-		ros::ServiceClient 			rossrv_sync_tic_;
-		ros::Timer					sync_tic_timer_;
 
 		std::string 	icname_;
 		std::string 	iclabel_;
@@ -80,7 +72,6 @@ class BciBridge : public cnbiros::core::NodeInterface {
 		float 	angle_min_;
 		float 	angle_max_;
 		float 	distance_;
-		float	sync_period_;
 };
 
 
