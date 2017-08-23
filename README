@@ -1,0 +1,41 @@
+================================================================================
+Environment setup
+================================================================================
+We assume to have two machine: one directly connected to the robot, one running
+the cnbiloop.
+In ROS ecosystem, the machine connected to the robot is the MASTER and the
+machine running the cnbiloop is the SLAVE. 
+ROSCORE is running on the robot machine taking care, while in the machine
+running the cnbiloop only the rostic/rostid nodes are executed.
+In order to configure tha machine with the aforementioned setup, the following
+steps are required:
+
+================================================================================
+In both the machines:
+================================================================================
+|+ Setting up the name of the machines
+ |+ In /etc/hosts, add the following lines:
+  |- 10.66.99.200 bci
+  |- 10.66.99.201 robot
+	 (where the two IPs can be different according to the network setup)
+|+ Setting up the current ROS workspace:
+ |+ In $HOME/.profile, add the following lines:
+  |- export ROS_WORKSPACE_CURRENT=$(PATH_TO_THE_WORKSPACE_TO_BE_CHANGED)
+
+================================================================================
+In the machines runnign ROSCORE (robot):
+================================================================================
+|+ Setting up ROS environment variables
+ |+ In $HOME/.profile, add the following lines:
+  |- export ROS_HOSTNAME=robot
+  |- export ROS_MASTER_URI=http://robot:11311
+
+================================================================================
+In the machines runnign cnbiloop (bci):
+================================================================================
+|+ Setting up ROS environment variables
+ |+ In $HOME/.profile, add the following lines:
+  |- export ROS_HOSTNAME=bci
+  |- export ROS_MASTER_URI=http://robot:11311
+
+A logout is required to enable the changes in $HOME/.profile
