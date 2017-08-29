@@ -38,47 +38,47 @@ void StateControl::reset_odometry(){
 }
 
 void StateControl::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg){
-	
+		
 	int event;
 	cnbiros_core::SetStateSrv srv;
 	
 	event = (*msg).event;
-
 	switch(event) {
 		case CNBIROS_BCIBRIDGE_EVENT_START:
-			ROS_INFO("Command: start");
+			//ROS_INFO("Command: start");
 			//reset_odometry();
 			srv.request.state = this->DoStart;
 			call_state_service(srv);
 			break;
 		case CNBIROS_BCIBRIDGE_EVENT_STOP:
-			ROS_INFO("Command: stop");
+			//ROS_INFO("Command: stop");
 			srv.request.state = this->DoStop;
 			call_state_service(srv);
 			ros::shutdown();
 			break;
 		case CNBIROS_BCIBRIDGE_EVENT_RESUME:
-			ROS_INFO("Command: resume");
+			//ROS_INFO("Command: resume");
 			srv.request.state = this->DoResume;
 			call_state_service(srv);
 			break;
 		case CNBIROS_BCIBRIDGE_EVENT_PAUSE:
-			ROS_INFO("Command: pause");
+			//ROS_INFO("Command: pause");
 			srv.request.state = this->DoPause;
 			call_state_service(srv);
 			break;
+		//additional commands for direct control via TiD
 		case 25354:
-			ROS_INFO("Command: straight");
+			//ROS_INFO("Command: straight");
 			srv.request.state = this->DoStraight;
 			call_state_service(srv);
 			break;
 		case 25355:
-			ROS_INFO("Command: left");
+			//ROS_INFO("Command: left");
 			srv.request.state = this->DoLeft;
 			call_state_service(srv);
 			break;
 		case 25356:
-			ROS_INFO("Command: right");
+			//ROS_INFO("Command: right");
 			srv.request.state = this->DoRight;
 			call_state_service(srv);
 			break;
