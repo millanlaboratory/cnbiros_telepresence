@@ -47,23 +47,26 @@ void StateControl::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg)
 	switch(event) {
 		case CNBIROS_BCIBRIDGE_EVENT_START:
 			ROS_INFO("Command: start");
-			//reset_odometry();
+			reset_odometry();
 			srv.request.state = this->DoStart;
 			call_state_service(srv);
 			break;
 		case CNBIROS_BCIBRIDGE_EVENT_STOP:
 			ROS_INFO("Command: stop");
+			//reset_odometry();
 			srv.request.state = this->DoStop;
 			call_state_service(srv);
 			ros::shutdown();
 			break;
 		case CNBIROS_BCIBRIDGE_EVENT_RESUME:
 			ROS_INFO("Command: resume");
+			reset_odometry();
 			srv.request.state = this->DoResume;
 			call_state_service(srv);
 			break;
 		case CNBIROS_BCIBRIDGE_EVENT_PAUSE:
 			ROS_INFO("Command: pause");
+			//reset_odometry();
 			srv.request.state = this->DoPause;
 			call_state_service(srv);
 			break;
