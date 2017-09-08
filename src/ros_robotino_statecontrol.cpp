@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 
 
 	cnbiros::telepresence::StateControl manager(&node);
-	manager.SetRate(20);
+	manager.SetRate(50);
 
 	manager.Run();
 
