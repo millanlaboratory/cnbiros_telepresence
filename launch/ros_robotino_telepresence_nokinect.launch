@@ -1,0 +1,39 @@
+<launch>
+
+	<!-- Launch all the robotino telepresence related nodes but the cnbi -->
+	<!-- interfaces. The interfaces should be launched from the machine  -->
+	<!-- where the cnbiloop is running -->
+
+	<!-- Robotino launcher -->
+	<include file="$(find cnbiros_robotino)/launch/ros_robotino.launch" >
+		<arg name="address" value="192.168.1.3" />
+	</include>
+	
+	<!-- Robotino Kinect launcher -->
+	<!-- <include file="$(find cnbiros_robotino)/launch/ros_robotino_kinect.launch" > -->
+	<!-- </include> -->
+
+	<!-- BCI bridge node -->
+	<node name="bci_bridge" pkg="cnbiros_telepresence" type="ros_robotino_bcibridge" output="screen" />
+
+	<!-- Fusion nodes launchers -->
+	<node name="attractors" pkg="cnbiros_telepresence" type="ros_robotino_attractors" output="screen" />
+	<node name="repellors" pkg="cnbiros_telepresence" type="ros_robotino_repellors" output="screen" />
+
+	<!-- State control node -->
+	<node name="state_control" pkg="cnbiros_telepresence" type="ros_robotino_statecontrol" output="screen" required="true" />
+
+	<!-- Rosbag -->
+	<node pkg="rosbag" type="record" name="rosbag_record_odometry" args=" -o $(env HOME)/Desktop/ record /odom /cmd_vel /rostic_cnbi2ros /rostid_cnbi2ros" />
+
+	<!-- Forcefield navigation -->
+	<node name="navigation" pkg="cnbiros_telepresence" type="ros_robotino_navigation" output="screen" />
+
+
+	<!-- Kinect2 on camera-laptop 
+	<group>
+		<machine name="camera-laptop" address="camera" env-loader="$(env HOME)/ros_env.sh" user="felix" password="ros4free" default="true" />
+		<include machine="camera-laptop" file="/home/felix/catkin_ws/src/iai_kinect2/kinect2_bridge/launch/record_kinect2.launch" />
+	</group> -->	
+</launch>
+
