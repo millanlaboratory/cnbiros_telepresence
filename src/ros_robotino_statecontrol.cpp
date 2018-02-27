@@ -13,5 +13,6 @@ int main(int argc, char** argv) {
 
 	manager.Run();
 
+	ros::shutdown();
 	return 0;
 }
