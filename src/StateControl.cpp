@@ -37,7 +37,7 @@ void StateControl::reset_odometry(){
 	
 }
 
-void StateControl::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg){
+void StateControl::on_received_tid(const cnbiros_tobi_msgs::TidMessage::ConstPtr& msg){
 		
 	int event;
 	cnbiros_core::SetStateSrv srv;

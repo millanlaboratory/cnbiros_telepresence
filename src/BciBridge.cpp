@@ -82,7 +82,7 @@ void BciBridge::ConfigTicMessage(const std::string& name, const std::string& lab
 	
 }
 
-void BciBridge::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg) {
+void BciBridge::on_received_tid(const cnbiros_tobi_msgs::TidMessage::ConstPtr& msg) {
 	
 	int event;
 	float angle;
@@ -123,13 +123,13 @@ void BciBridge::on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg) {
 
 }
 
-void BciBridge::on_received_tic(const cnbiros_bci::TicMessage::ConstPtr& msg) {
+void BciBridge::on_received_tic(const cnbiros_tobi_msgs::TicMessage::ConstPtr& msg) {
 
 	cnbiros::bci::TicTools tool;
 
 	float value, nvalue, svalue;
 	geometry_msgs::Point32 point;
-	cnbiros_bci::TicMessage data = *msg;
+	cnbiros_tobi_msgs::TicMessage data = *msg;
 
 	value = tool.GetValue(data, this->icname_, this->iclabel_);
 

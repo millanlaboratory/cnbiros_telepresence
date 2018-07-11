@@ -6,8 +6,8 @@
 #include "cnbiros_core/NodeInterface.hpp"
 #include "cnbiros_core/Subscribers.hpp"
 #include "cnbiros_core/Publishers.hpp"
-#include "cnbiros_bci/TidMessage.h"
-#include "cnbiros_bci/TicMessage.h"
+#include "cnbiros_tobi_msgs/TidMessage.h"
+#include "cnbiros_tobi_msgs/TicMessage.h"
 #include "cnbiros_bci/TicTools.hpp"
 #include "cnbiros_bci/TidTools.hpp"
 
@@ -41,8 +41,8 @@ class BciBridge : public cnbiros::core::NodeInterface {
 		void ConfigTicMessage(const std::string& name, const std::string& label);
 
 	protected:
-		virtual void on_received_tid(const cnbiros_bci::TidMessage::ConstPtr& msg);
-		virtual void on_received_tic(const cnbiros_bci::TicMessage::ConstPtr& msg);
+		virtual void on_received_tid(const cnbiros_tobi_msgs::TidMessage::ConstPtr& msg);
+		virtual void on_received_tic(const cnbiros_tobi_msgs::TicMessage::ConstPtr& msg);
 		virtual void onRunning(void);
 
 		virtual bool on_set_input_range(cnbiros_telepresence::SetInputRangeSrv::Request& req,
